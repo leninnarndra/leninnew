@@ -1,0 +1,92 @@
+1.Need to launch ec2 and connect
+need to crate iam role with addminstrative access and attache to ec2-instance
+2.yum unzip
+3.curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+5.aws configure
+
+cli secr/acces key / us-east-1(reagion)/ json
+
+4.curl -o aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/1.14.6/2019-08-22/bin/linux/amd64/aws-iam-authenticator
+5.chmod +x ./aws-iam-authenticator
+6.mkdir -p $HOME/bin && cp ./aws-iam-authenticator $HOME/bin/aws-iam-authenticator && export PATH=$HOME/bin:$PATH
+7.echo 'export PATH=$HOME/bin:$PATH' >> ~/.bashrc
+8.aws-iam-authenticator help
+9.yum updat -y
+10.curl --silent --location "https://github.com/weaveworks/eksctl/releases/download/latest_release/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+11.sudo mv /tmp/eksctl /usr/local/bin
+12.eksctl version
+13.curl -o kubectl https://amazon-eks.s3-us-west-2.amazonaws.com/1.14.6/2019-08-22/bin/linux/amd64/kubectl
+14.chmod +x ./kubectl
+15.mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
+15.kubectl version --short --client
+16.eksctl create cluster --name clustername --version 1.18 --region us-east-1 --nodegroup-name standard-workers --node-type t2.medium --nodes 3 --nodes-min 1 --nodes-max 4 --node-ami auto `
+----------------------------------------------------------
+
+
+
+git init
+  501  git remote add origin https://github.com/leninnarndra/ekssetup.git
+  502  git add .
+  503  git commit -m "file fucked"
+  504  git push origin master
+  505  git push origin master
+  506  history
+
+
+aws eks --region us-east-1 update-kubeconfig --name eks-lenin   -----for updateing configfile
+
+
+Task----------
+Create useers in jenkins and giving permisions to usrs
+setup minikube
+
+
+eksctl create cluster --name lenin-eks --version 1.18 --region us-east-1 --nodegroup-name standard-workers --node-type t2.medium --nodes 3 --nodes-min 1 --nodes-max 4 --node-ami auto 
+
+
+eksctl create cluster --name eks-lenin --version 1.18 --region us-east-1 --nodegroup-name standard-workers --node-type t2.medium --nodes 3 --nodes-min 1 --nodes-max 4 --node-ami auto
+
+
+---------------------------------
+from ec2metadata/GetMetadata - will retry after delay of 43.844455424s
+[!]  retryable error (EC2MetadataError: failed to make EC2Metadata request
+        status code: 404, request id:
+caused by: <?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">e 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head>
+  <title>404 - Not Found</title>
+ </head>
+ <body>
+  <h1>404 - Not Found</h1>
+ </body>
+</html>
+) from ec2metadata/GetMetadata - will retry after delay of 1m22.767337472s
+[!]  retryable error (EC2MetadataError: failed to make EC2Metadata request
+        status code: 404, request id:
+caused by: <?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+
+----------if you get thse kind of error need to create rol for admin and attach to ec2
+
+
+
+
+
+------------------------------------------------------
+
+
+
+
+if i want to connect eks from jenkins we should update auth.yaml in eks clustr level.....
+
+go to site(https://docs.aws.amazon.com/eks/latest/userguide/add-user-role.html)
+
+1) to eddite the file use cmd as : kubectl edit -n kube-system configmap/aws-auth
